@@ -1,4 +1,4 @@
-package com.brum.dev.helpDeskUdemy.repository;
+package com.brum.dev.helpDeskUdemy.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
