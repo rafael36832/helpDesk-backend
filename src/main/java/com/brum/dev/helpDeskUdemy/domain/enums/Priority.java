@@ -7,9 +7,9 @@ public enum Priority {
 	private Integer code;
 	private String description;
 	
-	private Priority(Integer codigo, String descricao) {
-		this.code = codigo;
-		this.description = descricao;
+	private Priority(Integer cod, String descr) {
+		this.code = cod;
+		this.description = descr;
 	}
 
 	public Integer getCode() {

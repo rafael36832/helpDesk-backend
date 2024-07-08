@@ -2,14 +2,14 @@ package com.brum.dev.helpDeskUdemy.domain.enums;
 
 public enum Profile {
 	
-	ADMIN(0, "ROLE_ADMIN"), CLIENT(1, "ROLE_CLIENT"), TECHNICIAN(1, "ROLE_TECHNICIAN");
+	ADMIN(0, "ROLE_ADMIN"), CLIENT(1, "ROLE_CLIENT"), TECHNICIAN(2, "ROLE_TECHNICIAN");
 	
 	private Integer code;
 	private String description;
 	
-	private Profile(Integer codigo, String descricao) {
-		this.code = codigo;
-		this.description = descricao;
+	private Profile(Integer cod, String descr) {
+		this.code = cod;
+		this.description = descr;
 	}
 
 	public Integer getCode() {

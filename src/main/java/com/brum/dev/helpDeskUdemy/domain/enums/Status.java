@@ -7,9 +7,9 @@ public enum Status {
 	private Integer code;
 	private String description;
 	
-	private Status(Integer codigo, String descricao) {
-		this.code = codigo;
-		this.description = descricao;
+	private Status(Integer cod, String descr) {
+		this.code = cod;
+		this.description = descr;
 	}
 
 	public Integer getCode() {
