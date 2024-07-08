@@ -1,4 +1,4 @@
-package com.brum.dev.helpDeskUdemy.domain;
+package com.brum.dev.helpDeskUdemy.domain.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -57,6 +57,7 @@ public abstract class Person implements Serializable{
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
+		this.email = email;
 		this.password = password;
 		addProfile(Profile.CLIENT);
 	}

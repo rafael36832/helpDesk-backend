@@ -1,4 +1,4 @@
-package com.brum.dev.helpDeskUdemy.domain;
+package com.brum.dev.helpDeskUdemy.domain.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
