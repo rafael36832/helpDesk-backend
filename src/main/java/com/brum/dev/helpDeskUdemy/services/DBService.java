@@ -16,7 +16,7 @@ import com.brum.dev.helpDeskUdemy.repositories.TechnicianRepository;
 import com.brum.dev.helpDeskUdemy.repositories.TicketRepository;
 
 @Service
-public class TestDBService {
+public class DBService {
 	
 	@Autowired
 	private TechnicianRepository technicianRepository;
