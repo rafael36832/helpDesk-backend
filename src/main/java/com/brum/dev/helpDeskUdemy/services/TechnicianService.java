@@ -1,5 +1,6 @@
 package com.brum.dev.helpDeskUdemy.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,13 @@ public class TechnicianService {
 		Optional<Technician> response = repository.findById(id);
 		return response.orElseThrow(() -> new NotFoundException("Object not found: Technician id: " + id)); 
 	}
+
+	public List<Technician> findAll() {
+		return repository.findAll();
+	}
+	
+	
+	
 	
 
 }
