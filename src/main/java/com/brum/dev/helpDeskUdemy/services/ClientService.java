@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.brum.dev.helpDeskUdemy.domain.entities.Client;
 import com.brum.dev.helpDeskUdemy.repositories.ClientRepository;
 
-
 public class ClientService {
 
 	@Autowired

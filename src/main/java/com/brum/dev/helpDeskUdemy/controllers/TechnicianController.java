@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.brum.dev.helpDeskUdemy.domain.dtos.TechnicianDTO;
 import com.brum.dev.helpDeskUdemy.domain.entities.Technician;
 import com.brum.dev.helpDeskUdemy.services.TechnicianService;
 
@@ -18,9 +19,10 @@ public class TechnicianController {
 	private TechnicianService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Technician> findByid(@PathVariable Integer id){
+	public ResponseEntity<TechnicianDTO> findByid(@PathVariable Integer id){
 		Technician response = this.service.findByid(id);
-		return ResponseEntity.ok().body(response);
+		TechnicianDTO dto = new TechnicianDTO(response);
+		return ResponseEntity.ok().body(dto);
 	}
 	
 }
