@@ -1,4 +1,4 @@
-package com.brum.dev.helpDeskUdemy.exceptions;
+package com.brum.dev.helpDeskUdemy.exceptions.Entities;
 
 public class DataIntegrityViolationException extends RuntimeException {
 

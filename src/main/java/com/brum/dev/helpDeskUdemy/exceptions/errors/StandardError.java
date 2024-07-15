@@ -1,4 +1,4 @@
-package com.brum.dev.helpDeskUdemy.exceptions;
+package com.brum.dev.helpDeskUdemy.exceptions.errors;
 
 import java.io.Serializable;
 
