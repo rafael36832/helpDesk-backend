@@ -16,14 +16,14 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
-public class Technician extends Person{
-	
+public class Technician extends Person {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "technician")
 	private List<Ticket> tickets = new ArrayList<>();
-	
+
 	public Technician() {
 		super();
 		addProfile(Profile.TECHNICIAN);
@@ -33,8 +33,8 @@ public class Technician extends Person{
 		super(id, name, cpf, email, password);
 		addProfile(Profile.TECHNICIAN);
 	}
-	
-	public Technician(TechnicianDTO dto){
+
+	public Technician(TechnicianDTO dto) {
 		super();
 		this.id = dto.getId();
 		this.name = dto.getName();
@@ -42,10 +42,10 @@ public class Technician extends Person{
 		this.email = dto.getEmail();
 		this.password = dto.getPassword();
 		this.creationDate = dto.getCreationDate();
-		this.profiles = dto.getProfiles().stream().map(x -> x.getCode()).collect(Collectors.toSet());		
+		this.profiles = dto.getProfiles().stream().map(x -> x.getCode()).collect(Collectors.toSet());
 	}
 
-	public void addTicket(Ticket ticket){
+	public void addTicket(Ticket ticket) {
 		this.tickets.add(ticket);
 	}
 

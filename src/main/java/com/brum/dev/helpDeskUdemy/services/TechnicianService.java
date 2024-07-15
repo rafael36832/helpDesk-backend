@@ -18,22 +18,22 @@ import jakarta.validation.Valid;
 
 @Service
 public class TechnicianService {
-	
+
 	@Autowired
 	private TechnicianRepository repository;
-	
+
 	@Autowired
 	private PersonRepository personRepository;
-	
+
 	public Technician findByid(Integer id) {
 		Optional<Technician> response = repository.findById(id);
-		return response.orElseThrow(() -> new NotFoundException("Object not found: Technician id: " + id)); 
+		return response.orElseThrow(() -> new NotFoundException("Object not found: Technician id: " + id));
 	}
 
 	public List<Technician> findAll() {
 		return repository.findAll();
 	}
-	
+
 	public Technician create(TechnicianDTO dto) {
 		dto.setId(null);
 		this.verifyCpfAndEmail(dto);
@@ -48,32 +48,27 @@ public class TechnicianService {
 		technician = new Technician(dto);
 		return repository.save(technician);
 	}
-	
+
 	public void delete(Integer id) {
 		Technician technician = this.findByid(id);
-		if(technician.getTickets().size()>0) {
-			throw new DataIntegrityViolationException("There are tickets associated with this technician. You cannot delete it!");
+		if (technician.getTickets().size() > 0) {
+			throw new DataIntegrityViolationException(
+					"There are tickets associated with this technician. You cannot delete it!");
 		}
-		
+
 		repository.deleteById(id);
 	}
-	
+
 	private void verifyCpfAndEmail(TechnicianDTO dto) {
 		Optional<Person> personByCpf = this.personRepository.findByCpf(dto.getCpf());
-		if(personByCpf.isPresent() && dto.getId() != personByCpf.get().getId()) {
+		if (personByCpf.isPresent() && dto.getId() != personByCpf.get().getId()) {
 			throw new DataIntegrityViolationException("CPF already registered");
 		}
-		
+
 		Optional<Person> personByEmail = this.personRepository.findByEmail(dto.getEmail());
-		if(personByEmail.isPresent() && dto.getId() != personByEmail.get().getId()) {
+		if (personByEmail.isPresent() && dto.getId() != personByEmail.get().getId()) {
 			throw new DataIntegrityViolationException("Email already registered");
 		}
 	}
-
-
-	
-	
-	
-	
 
 }
