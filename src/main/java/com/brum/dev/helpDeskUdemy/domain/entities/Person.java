@@ -31,18 +31,18 @@ public abstract class Person implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 	
-	@NotNull
+	@NotNull(message = "The field Name cannot be null")
 	protected String name;
 	
-	@NotNull
+	@NotNull(message = "The field CPF cannot be null")
 	@Column(unique = true)
 	protected String cpf;
 	
-	@NotNull
+	@NotNull(message = "The field Email cannot be null")
 	@Column(unique = true)
 	protected String email;
 
-	@NotNull
+	@NotNull(message = "The field Password cannot be null")
 	protected String password;
 	
 	@ElementCollection(fetch = FetchType.EAGER)

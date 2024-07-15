@@ -9,6 +9,8 @@ import com.brum.dev.helpDeskUdemy.domain.entities.Technician;
 import com.brum.dev.helpDeskUdemy.domain.enums.Profile;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -17,13 +19,19 @@ public class TechnicianDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	protected Integer id;
-
+	
+	@NotNull(message = "The field Name cannot be null")
 	protected String name;
-
+	
+	@NotNull(message = "The field CPF cannot be null")
+	@Column(unique = true)
 	protected String cpf;
-
+	
+	@NotNull(message = "The field Email cannot be null")
+	@Column(unique = true)
 	protected String email;
 
+	@NotNull(message = "The field Password cannot be null")
 	protected String password;
 
 	protected Set<Profile> profiles = new HashSet<>();
