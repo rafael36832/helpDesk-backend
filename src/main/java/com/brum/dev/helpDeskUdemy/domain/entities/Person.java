@@ -18,6 +18,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -30,14 +31,18 @@ public abstract class Person implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 	
+	@NotNull
 	protected String name;
 	
+	@NotNull
 	@Column(unique = true)
 	protected String cpf;
 	
+	@NotNull
 	@Column(unique = true)
 	protected String email;
 
+	@NotNull
 	protected String password;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
