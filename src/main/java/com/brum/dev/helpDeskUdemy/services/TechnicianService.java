@@ -14,6 +14,8 @@ import com.brum.dev.helpDeskUdemy.exceptions.Entities.NotFoundException;
 import com.brum.dev.helpDeskUdemy.repositories.PersonRepository;
 import com.brum.dev.helpDeskUdemy.repositories.TechnicianRepository;
 
+import jakarta.validation.Valid;
+
 @Service
 public class TechnicianService {
 	
@@ -39,6 +41,23 @@ public class TechnicianService {
 		return repository.save(technician);
 	}
 
+	public Technician update(Integer id, @Valid TechnicianDTO dto) {
+		dto.setId(id);
+		Technician technician = this.findByid(id);
+		this.verifyCpfAndEmail(dto);
+		technician = new Technician(dto);
+		return repository.save(technician);
+	}
+	
+	public void delete(Integer id) {
+		Technician technician = this.findByid(id);
+		if(technician.getTickets().size()>0) {
+			throw new DataIntegrityViolationException("There are tickets associated with this technician. You cannot delete it!");
+		}
+		
+		repository.deleteById(id);
+	}
+	
 	private void verifyCpfAndEmail(TechnicianDTO dto) {
 		Optional<Person> personByCpf = this.personRepository.findByCpf(dto.getCpf());
 		if(personByCpf.isPresent() && dto.getId() != personByCpf.get().getId()) {
@@ -50,6 +69,8 @@ public class TechnicianService {
 			throw new DataIntegrityViolationException("Email already registered");
 		}
 	}
+
+
 	
 	
 	

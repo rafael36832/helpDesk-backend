@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.brum.dev.helpDeskUdemy.domain.enums.Profile;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -34,6 +36,7 @@ public abstract class Person implements Serializable{
 	@NotNull(message = "The field Name cannot be null")
 	protected String name;
 	
+	@CPF
 	@NotNull(message = "The field CPF cannot be null")
 	@Column(unique = true)
 	protected String cpf;
