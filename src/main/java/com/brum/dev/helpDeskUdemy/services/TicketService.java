@@ -15,13 +15,17 @@ public class TicketService {
 
 	@Autowired
 	TicketRepository repository;
-	
+
 	public Ticket findByid(Integer id) {
 		Optional<Ticket> response = repository.findById(id);
-		return response.orElseThrow(() -> new NotFoundException("[TicketService] Object not found: Ticket id: " + id));
+		return response.orElseThrow(() -> new NotFoundException("Object not found: Ticket id: " + id));
 	}
 
 	public List<Ticket> findAll() {
 		return repository.findAll();
+	}
+
+	public void delete(Integer id) {
+		repository.deleteById(id);
 	}
 }

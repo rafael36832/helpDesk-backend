@@ -27,7 +27,7 @@ public class ClientService {
 
 	public Client findByid(Integer id) {
 		Optional<Client> response = repository.findById(id);
-		return response.orElseThrow(() -> new NotFoundException("[ClientService] Object not found: Client id: " + id));
+		return response.orElseThrow(() -> new NotFoundException("Object not found: Client id: " + id));
 	}
 
 	public List<Client> findAll() {
@@ -53,7 +53,7 @@ public class ClientService {
 		Client client = this.findByid(id);
 		if (client.getTickets().size() > 0) {
 			throw new DataIntegrityViolationException(
-					"[ClientService] There are tickets associated with this client. You cannot delete it!");
+					"There are tickets associated with this client. You cannot delete it!");
 		}
 
 		repository.deleteById(id);
@@ -62,12 +62,12 @@ public class ClientService {
 	private void verifyCpfAndEmail(ClientDTO dto) {
 		Optional<Person> personByCpf = this.personRepository.findByCpf(dto.getCpf());
 		if (personByCpf.isPresent() && dto.getId() != personByCpf.get().getId()) {
-			throw new DataIntegrityViolationException("[ClientService] CPF already registered");
+			throw new DataIntegrityViolationException("CPF already registered");
 		}
 
 		Optional<Person> personByEmail = this.personRepository.findByEmail(dto.getEmail());
 		if (personByEmail.isPresent() && dto.getId() != personByEmail.get().getId()) {
-			throw new DataIntegrityViolationException("[ClientService] Email already registered");
+			throw new DataIntegrityViolationException("Email already registered");
 		}
 	}
 }
