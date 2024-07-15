@@ -18,6 +18,8 @@ import com.brum.dev.helpDeskUdemy.domain.dtos.TechnicianDTO;
 import com.brum.dev.helpDeskUdemy.domain.entities.Technician;
 import com.brum.dev.helpDeskUdemy.services.TechnicianService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/technician")
 public class TechnicianController {
@@ -40,7 +42,7 @@ public class TechnicianController {
 	}
 
 	@PostMapping
-	public ResponseEntity<TechnicianDTO> create(@RequestBody TechnicianDTO dto) {
+	public ResponseEntity<TechnicianDTO> create(@Valid @RequestBody TechnicianDTO dto) {
 		Technician technician = service.create(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(technician.getId())
 				.toUri();

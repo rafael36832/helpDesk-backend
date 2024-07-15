@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import com.brum.dev.helpDeskUdemy.domain.dtos.TechnicianDTO;
 import com.brum.dev.helpDeskUdemy.domain.entities.Person;
 import com.brum.dev.helpDeskUdemy.domain.entities.Technician;
-import com.brum.dev.helpDeskUdemy.exceptions.DataIntegrityViolationException;
-import com.brum.dev.helpDeskUdemy.exceptions.NotFoundException;
+import com.brum.dev.helpDeskUdemy.exceptions.Entities.DataIntegrityViolationException;
+import com.brum.dev.helpDeskUdemy.exceptions.Entities.NotFoundException;
 import com.brum.dev.helpDeskUdemy.repositories.PersonRepository;
 import com.brum.dev.helpDeskUdemy.repositories.TechnicianRepository;
 
