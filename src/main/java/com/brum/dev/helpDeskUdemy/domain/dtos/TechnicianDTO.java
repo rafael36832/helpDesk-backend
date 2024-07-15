@@ -10,10 +10,8 @@ import com.brum.dev.helpDeskUdemy.domain.enums.Profile;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class TechnicianDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,6 +30,11 @@ public class TechnicianDTO implements Serializable {
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate creationDate = LocalDate.now();
+	
+	public TechnicianDTO() {
+		super();
+		profiles.add(Profile.TECHNICIAN);
+	}
 
 	public TechnicianDTO(Technician technician) {
 		super();
@@ -42,5 +45,6 @@ public class TechnicianDTO implements Serializable {
 		this.password = technician.getPassword();
 		this.creationDate = technician.getCreationDate();
 		this.profiles = technician.getProfiles();
+		profiles.add(Profile.TECHNICIAN);
 	}
 }

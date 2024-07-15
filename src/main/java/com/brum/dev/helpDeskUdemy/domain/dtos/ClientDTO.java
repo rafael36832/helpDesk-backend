@@ -10,10 +10,8 @@ import com.brum.dev.helpDeskUdemy.domain.enums.Profile;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class ClientDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,6 +31,11 @@ public class ClientDTO implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate creationDate = LocalDate.now();
 
+	public ClientDTO() {
+		super();
+		this.profiles.add(Profile.CLIENT);
+	}
+
 	public ClientDTO(Client client) {
 		super();
 		this.id = client.getId();
@@ -42,6 +45,7 @@ public class ClientDTO implements Serializable {
 		this.email = client.getEmail();
 		this.password = client.getPassword();
 		this.profiles = client.getProfiles();
+		this.profiles.add(Profile.CLIENT);
 	}
 
 }
