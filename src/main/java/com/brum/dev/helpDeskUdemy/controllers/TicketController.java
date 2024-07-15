@@ -5,15 +5,18 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.brum.dev.helpDeskUdemy.domain.dtos.TicketDTO;
 import com.brum.dev.helpDeskUdemy.domain.entities.Ticket;
 import com.brum.dev.helpDeskUdemy.services.TicketService;
 
-@Controller(value = "/ticket")
+@RestController
+@RequestMapping(value = "/ticket")
 public class TicketController {
 
 	@Autowired
@@ -33,4 +36,9 @@ public class TicketController {
 		return ResponseEntity.ok().body(responseDTO);
 	}
 
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<TicketDTO> delete(@PathVariable Integer id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 }
