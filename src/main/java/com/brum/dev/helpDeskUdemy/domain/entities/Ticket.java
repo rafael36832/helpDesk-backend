@@ -98,4 +98,11 @@ public class Ticket implements Serializable {
 		return Objects.hash(id);
 	}
 	
+	public void setStatus(Status status) {
+		if(Status.CLOSED.equals(status)) {
+			this.setClosedDate(LocalDate.now());
+		}
+		this.status = status;
+	}
+	
 }

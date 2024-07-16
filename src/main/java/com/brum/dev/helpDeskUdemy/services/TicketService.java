@@ -1,5 +1,6 @@
 package com.brum.dev.helpDeskUdemy.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,6 +61,10 @@ public class TicketService {
 		Ticket ticket = new Ticket();
 		if (dto.getId() != null) {
 			ticket.setId(dto.getId());
+		}
+		
+		if(dto.getStatus() == 2) {
+			ticket.setClosedDate(LocalDate.now());
 		}
 
 		ticket.setTechnician(technician);
