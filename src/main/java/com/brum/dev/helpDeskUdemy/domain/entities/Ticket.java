@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import com.brum.dev.helpDeskUdemy.domain.dtos.TicketDTO;
 import com.brum.dev.helpDeskUdemy.domain.enums.Priority;
 import com.brum.dev.helpDeskUdemy.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -56,8 +57,8 @@ public class Ticket implements Serializable {
 		super();
 	}	
 
-	public Ticket(Integer id, Priority priority, Status status, String title, String observations,
-			Technician technician, Client client) {
+	public Ticket(Integer id, @NotNull Priority priority,
+			@NotNull Status status, @NotNull String title, String observations, Technician technician, Client client) {
 		super();
 		this.id = id;
 		this.priority = priority;
@@ -66,6 +67,18 @@ public class Ticket implements Serializable {
 		this.observations = observations;
 		this.technician = technician;
 		this.client = client;
+	}
+
+	
+	public Ticket(TicketDTO ticket) {
+		super();
+		this.id = ticket.getId();
+		this.priority = Priority.toEnum(ticket.getPriority());
+		this.status = Status.toEnum(ticket.getStatus());
+		this.title = ticket.getTitle();
+		this.observations = ticket.getObservations();
+		this.technician.id = ticket.getTechnician();
+		this.client.id = ticket.getClient();
 	}
 
 	@Override
