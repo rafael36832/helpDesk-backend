@@ -2,6 +2,7 @@ package com.brum.dev.helpDeskUdemy.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -41,6 +42,14 @@ public class ExceptionHandlerController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
 
+	@ExceptionHandler(BadCredentialsException.class)
+	public ResponseEntity<StandardError> loginException(ConstraintViolationException ex,
+			HttpServletRequest request) {
+		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.UNAUTHORIZED.value(),
+				"Constraint limitation Exception", ex.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+	}
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<StandardError> validationErrors(MethodArgumentNotValidException ex,
 			HttpServletRequest request) {

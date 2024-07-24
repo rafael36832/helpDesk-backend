@@ -8,7 +8,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.brum.dev.helpDeskUdemy.domain.dtos.LoginRequestDTO;
 import com.brum.dev.helpDeskUdemy.domain.enums.Profile;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,33 +27,33 @@ import lombok.Data;
 
 @Data
 @Entity
-public abstract class Person implements Serializable{
-	
+public abstract class Person implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
-	
+
 	@NotNull(message = "The field Name cannot be null")
 	protected String name;
-	
+
 	@CPF
 	@NotNull(message = "The field CPF cannot be null")
 	@Column(unique = true)
 	protected String cpf;
-	
+
 	@NotNull(message = "The field Email cannot be null")
 	@Column(unique = true)
 	protected String email;
 
 	@NotNull(message = "The field Password cannot be null")
 	protected String password;
-	
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "PROFILES")
 	protected Set<Integer> profiles = new HashSet<>();
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate creationDate = LocalDate.now();
 
@@ -69,7 +71,7 @@ public abstract class Person implements Serializable{
 		this.password = password;
 		addProfile(Profile.CLIENT);
 	}
-	
+
 	public Set<Profile> getProfiles() {
 		return profiles.stream().map(p -> Profile.toEnum(p)).collect(Collectors.toSet());
 	}
@@ -81,7 +83,7 @@ public abstract class Person implements Serializable{
 	@Override
 	public int hashCode() {
 		return Objects.hash(cpf, id);
-	} 
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -94,5 +96,9 @@ public abstract class Person implements Serializable{
 		Person other = (Person) obj;
 		return Objects.equals(cpf, other.cpf) && Objects.equals(id, other.id);
 	}
-		
+
+	public boolean isLoginCorrect(LoginRequestDTO loginRequestDTO, PasswordEncoder passwordEncoder) {
+		return passwordEncoder.matches(loginRequestDTO.getPassword(), this.password);
+	}
+
 }
