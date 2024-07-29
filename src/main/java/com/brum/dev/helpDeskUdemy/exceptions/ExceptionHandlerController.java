@@ -46,7 +46,7 @@ public class ExceptionHandlerController {
 	public ResponseEntity<StandardError> loginException(ConstraintViolationException ex,
 			HttpServletRequest request) {
 		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.UNAUTHORIZED.value(),
-				"Constraint limitation Exception", ex.getMessage(), request.getRequestURI());
+				"Bad Credential Exception", ex.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
 	}
 	

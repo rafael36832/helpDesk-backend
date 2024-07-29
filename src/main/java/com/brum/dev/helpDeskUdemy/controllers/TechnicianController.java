@@ -45,6 +45,7 @@ public class TechnicianController {
 	}
 
 	@PostMapping
+	@PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
 	public ResponseEntity<TechnicianDTO> create(@Valid @RequestBody TechnicianDTO dto) {
 		Technician technician = service.create(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(technician.getId())
@@ -53,6 +54,7 @@ public class TechnicianController {
 	}
 
 	@PutMapping(value = "/{id}")
+	@PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
 	public ResponseEntity<TechnicianDTO> update(@PathVariable Integer id, @Valid @RequestBody TechnicianDTO dto) {
 		Technician technician = service.update(id, dto);
 		return ResponseEntity.ok().body(new TechnicianDTO(technician));

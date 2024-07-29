@@ -45,7 +45,7 @@ public class TokenController {
 			if (!user.isLoginCorrect(dto, bCryptPasswordEncoder)) {
 				throw new BadCredentialsException("User or password is invalid!");
 			}
-
+			
 			var expiresIn = 300l;
 			var now = Instant.now();
 			var scopes = user.getProfiles().stream().map(Profile::getDescription).collect(Collectors.joining(" "));
