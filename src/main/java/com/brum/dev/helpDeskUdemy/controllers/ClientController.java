@@ -25,7 +25,7 @@ import com.brum.dev.helpDeskUdemy.services.ClientService;
 import jakarta.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "https://helpdesk-backend-prod-dc623e3fe50b.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/client")
 public class ClientController {
 

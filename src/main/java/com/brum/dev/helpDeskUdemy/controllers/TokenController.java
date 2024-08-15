@@ -22,7 +22,7 @@ import com.brum.dev.helpDeskUdemy.domain.enums.Profile;
 import com.brum.dev.helpDeskUdemy.services.PersonService;
 
 @RestController
-@CrossOrigin(origins = "https://helpdesk-backend-prod-dc623e3fe50b.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TokenController {
 
 	private final JwtEncoder jwtEncoder;
