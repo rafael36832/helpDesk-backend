@@ -48,7 +48,7 @@ public class TokenController {
 				throw new BadCredentialsException("User or password is invalid!");
 			}
 			
-			var expiresIn = 300l;
+			var expiresIn = 172800l;
 			var now = Instant.now();
 			var scopes = user.getProfiles().stream().map(Profile::getDescription).collect(Collectors.joining(" "));
 
