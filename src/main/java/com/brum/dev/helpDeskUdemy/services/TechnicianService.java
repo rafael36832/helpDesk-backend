@@ -50,7 +50,10 @@ public class TechnicianService {
 		dto.setId(id);
 		Technician technician = this.findByid(id);
 		this.verifyCpfAndEmail(dto);
-		if(!dto.getPassword().equals(technician.getPassword()) && !dto.getPassword().isEmpty()) {
+		if(dto.getPassword().isEmpty()) {
+			dto.setPassword(technician.getPassword());
+		}
+		if(!dto.getPassword().equals(technician.getPassword())) {
 			dto.setPassword(this.passwordEncoder.encode(dto.getPassword())); 
 		} 		
 		technician = new Technician(dto);
