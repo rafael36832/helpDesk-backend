@@ -50,7 +50,9 @@ public class TechnicianService {
 		dto.setId(id);
 		Technician technician = this.findByid(id);
 		this.verifyCpfAndEmail(dto);
-		dto.setPassword(this.passwordEncoder.encode(dto.getPassword())); 
+		if(!dto.getPassword().equals(technician.getPassword())) {
+			dto.setPassword(this.passwordEncoder.encode(dto.getPassword())); 
+		} 		
 		technician = new Technician(dto);
 		return repository.save(technician);
 	}
