@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.brum.dev.helpDeskUdemy.domain.dtos.TechnicianDTO;
@@ -25,6 +26,9 @@ public class TechnicianService {
 	@Autowired
 	private PersonRepository personRepository;
 
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	public Technician findByid(Integer id) {
 		Optional<Technician> response = repository.findById(id);
 		return response.orElseThrow(() -> new NotFoundException("Object not found: Technician id: " + id));
@@ -37,6 +41,7 @@ public class TechnicianService {
 	public Technician create(TechnicianDTO dto) {
 		dto.setId(null);
 		this.verifyCpfAndEmail(dto);
+		dto.setPassword(this.passwordEncoder.encode(dto.getPassword()));        
 		Technician technician = new Technician(dto);
 		return repository.save(technician);
 	}
@@ -45,6 +50,7 @@ public class TechnicianService {
 		dto.setId(id);
 		Technician technician = this.findByid(id);
 		this.verifyCpfAndEmail(dto);
+		dto.setPassword(this.passwordEncoder.encode(dto.getPassword())); 
 		technician = new Technician(dto);
 		return repository.save(technician);
 	}

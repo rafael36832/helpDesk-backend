@@ -29,18 +29,18 @@ public class DBService {
 
 	public void instanceDB() {
 
-		Technician tec1 = new Technician(null, "Valdir Cezar", "550.482.150-95", "valdir@mail.com", passwordEncoder.encode("123"));
+		Technician tec1 = new Technician(null, "Valdir Cezar", "55048215095", "valdir@mail.com", passwordEncoder.encode("123"));
 		tec1.addProfile(Profile.ADMIN);
-		Technician tec2 = new Technician(null, "Richard Stallman", "903.347.070-56", "stallman@mail.com", passwordEncoder.encode("123"));
-		Technician tec3 = new Technician(null, "Claude Elwood Shannon", "271.068.470-54", "shannon@mail.com", passwordEncoder.encode("123"));
-		Technician tec4 = new Technician(null, "Tim Berners-Lee", "162.720.120-39", "lee@mail.com", passwordEncoder.encode("123"));
-		Technician tec5 = new Technician(null, "Linus Torvalds", "778.556.170-27", "linus@mail.com", passwordEncoder.encode("123"));
+		Technician tec2 = new Technician(null, "Richard Stallman", "90334707056", "stallman@mail.com", passwordEncoder.encode("123"));
+		Technician tec3 = new Technician(null, "Claude Elwood Shannon", "27106847054", "shannon@mail.com", passwordEncoder.encode("123"));
+		Technician tec4 = new Technician(null, "Tim Berners-Lee", "16272012039", "lee@mail.com", passwordEncoder.encode("123"));
+		Technician tec5 = new Technician(null, "Linus Torvalds", "77855617027", "linus@mail.com", passwordEncoder.encode("123"));
 
-		Client cli1 = new Client(null, "Albert Einstein", "111.661.890-74", "einstein@mail.com", passwordEncoder.encode("123"));
-		Client cli2 = new Client(null, "Marie Curie", "322.429.140-06", "curie@mail.com", passwordEncoder.encode("123"));
-		Client cli3 = new Client(null, "Charles Darwin", "792.043.830-62", "darwin@mail.com", passwordEncoder.encode("123"));
-		Client cli4 = new Client(null, "Stephen Hawking", "177.409.680-30", "hawking@mail.com", passwordEncoder.encode("123"));
-		Client cli5 = new Client(null, "Max Planck", "081.399.300-83", "planck@mail.com", passwordEncoder.encode("123"));
+		Client cli1 = new Client(null, "Albert Einstein", "11166189074", "einstein@mail.com", passwordEncoder.encode("123"));
+		Client cli2 = new Client(null, "Marie Curie", "32242914006", "curie@mail.com", passwordEncoder.encode("123"));
+		Client cli3 = new Client(null, "Charles Darwin", "79204383062", "darwin@mail.com", passwordEncoder.encode("123"));
+		Client cli4 = new Client(null, "Stephen Hawking", "17740968030", "hawking@mail.com", passwordEncoder.encode("123"));
+		Client cli5 = new Client(null, "Max Planck", "08139930083", "planck@mail.com", passwordEncoder.encode("123"));
 
 		Ticket c1 = new Ticket(null, Priority.MEDIUM, Status.IN_PROGRESS, "Ticket 1", "Teste Ticket 1", tec1, cli1);
 		Ticket c2 = new Ticket(null, Priority.HIGH, Status.OPEN, "Ticket 2", "Teste Ticket 2", tec1, cli2);

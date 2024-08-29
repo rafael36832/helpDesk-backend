@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.brum.dev.helpDeskUdemy.domain.dtos.ClientDTO;
@@ -24,6 +25,9 @@ public class ClientService {
 
 	@Autowired
 	private PersonRepository personRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	public Client findByid(Integer id) {
 		Optional<Client> response = repository.findById(id);
@@ -37,6 +41,7 @@ public class ClientService {
 	public Client create(ClientDTO dto) {
 		dto.setId(null);
 		this.verifyCpfAndEmail(dto);
+		dto.setPassword(this.passwordEncoder.encode(dto.getPassword())); 
 		Client client = new Client(dto);
 		return repository.save(client);
 	}
@@ -45,6 +50,7 @@ public class ClientService {
 		dto.setId(id);
 		Client client = this.findByid(id);
 		this.verifyCpfAndEmail(dto);
+		dto.setPassword(this.passwordEncoder.encode(dto.getPassword())); 
 		client = new Client(dto);
 		return repository.save(client);
 	}
