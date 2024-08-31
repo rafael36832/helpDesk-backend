@@ -2,7 +2,7 @@ package com.brum.dev.helpDeskUdemy.domain.enums;
 
 public enum Profile {
 	
-	ADMIN(0, "ROLE_ADMIN"), CLIENT(1, "ROLE_CLIENT"), TECHNICIAN(2, "ROLE_TECHNICIAN");
+	ADMIN(0, "ROLE_ADMIN"), DEFAULT(1, "ROLE_DEFAULT"), READONLY(2, "ROLE_READONLY");
 	
 	private Integer code;
 	private String description;

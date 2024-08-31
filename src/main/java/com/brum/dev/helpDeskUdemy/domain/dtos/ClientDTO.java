@@ -34,14 +34,14 @@ public class ClientDTO implements Serializable {
 	@NotNull(message = "The field Password cannot be null")
 	protected String password;
 
-	protected Set<Profile> profiles = new HashSet<>();
+	@NotNull(message = "The field Profile cannot be null")
+	protected Profile profile;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate creationDate = LocalDate.now();
 
 	public ClientDTO() {
 		super();
-		this.profiles.add(Profile.CLIENT);
 	}
 
 	public ClientDTO(Client client) {
@@ -52,8 +52,7 @@ public class ClientDTO implements Serializable {
 		this.creationDate = client.getCreationDate();
 		this.email = client.getEmail();
 		this.password = client.getPassword();
-		this.profiles = client.getProfiles();
-		this.profiles.add(Profile.CLIENT);
+		this.profile = client.getProfile();
 	}
 
 }

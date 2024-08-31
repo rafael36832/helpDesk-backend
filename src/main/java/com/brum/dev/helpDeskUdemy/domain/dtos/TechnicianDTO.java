@@ -34,14 +34,13 @@ public class TechnicianDTO implements Serializable {
 	@NotNull(message = "The field Password cannot be null")
 	protected String password;
 
-	protected Set<Profile> profiles = new HashSet<>();
+	protected Profile profile;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate creationDate = LocalDate.now();
 	
 	public TechnicianDTO() {
 		super();
-		profiles.add(Profile.TECHNICIAN);
 	}
 
 	public TechnicianDTO(Technician technician) {
@@ -52,7 +51,6 @@ public class TechnicianDTO implements Serializable {
 		this.email = technician.getEmail();
 		this.password = technician.getPassword();
 		this.creationDate = technician.getCreationDate();
-		this.profiles = technician.getProfiles();
-		profiles.add(Profile.TECHNICIAN);
+		this.profile = technician.getProfile();
 	}
 }

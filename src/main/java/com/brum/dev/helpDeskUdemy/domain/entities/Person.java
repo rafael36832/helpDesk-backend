@@ -50,34 +50,24 @@ public abstract class Person implements Serializable {
 	@NotNull(message = "The field Password cannot be null")
 	protected String password;
 
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "PROFILES")
-	protected Set<Integer> profiles = new HashSet<>();
+	@NotNull(message = "The field Profile cannot be null")
+	protected Profile profile;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate creationDate = LocalDate.now();
 
 	public Person() {
 		super();
-		addProfile(Profile.CLIENT);
 	}
 
-	public Person(Integer id, String name, String cpf, String email, String password) {
+	public Person(Integer id, String name, String cpf, String email, Profile profile, String password) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.email = email;
 		this.password = password;
-		addProfile(Profile.CLIENT);
-	}
-
-	public Set<Profile> getProfiles() {
-		return profiles.stream().map(p -> Profile.toEnum(p)).collect(Collectors.toSet());
-	}
-
-	public void addProfile(Profile profile) {
-		this.profiles.add(profile.getCode());
+		this.profile = profile;
 	}
 
 	@Override

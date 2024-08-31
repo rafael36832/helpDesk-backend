@@ -26,12 +26,10 @@ public class Technician extends Person {
 
 	public Technician() {
 		super();
-		addProfile(Profile.TECHNICIAN);
 	}
 
-	public Technician(Integer id, String name, String cpf, String email, String password) {
-		super(id, name, cpf, email, password);
-		addProfile(Profile.TECHNICIAN);
+	public Technician(Integer id, String name, String cpf, String email, Profile profile, String password) {
+		super(id, name, cpf, email, profile, password);
 	}
 
 	public Technician(TechnicianDTO dto) {
@@ -42,7 +40,7 @@ public class Technician extends Person {
 		this.email = dto.getEmail();
 		this.password = dto.getPassword();
 		this.creationDate = dto.getCreationDate();
-		this.profiles = dto.getProfiles().stream().map(x -> x.getCode()).collect(Collectors.toSet());
+		this.profile = dto.getProfile();
 	}
 
 	public void addTicket(Ticket ticket) {
