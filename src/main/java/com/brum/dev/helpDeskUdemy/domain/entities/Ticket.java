@@ -77,7 +77,7 @@ public class Ticket implements Serializable {
 		this.priority = Priority.toEnum(ticket.getPriority());
 		this.status = Status.toEnum(ticket.getStatus());
 		this.title = ticket.getTitle();
-		this.description = ticket.getObservations();
+		this.description = ticket.getDescription();
 		this.technician.id = ticket.getTechnician();
 		this.client.id = ticket.getClient();
 	}

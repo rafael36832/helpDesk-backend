@@ -31,7 +31,8 @@ public class TicketDTO implements Serializable {
 	@NotNull
 	private String title;
 
-	private String observations;
+	@NotNull
+	private String description;
 
 	private Integer technician;
 
@@ -47,7 +48,7 @@ public class TicketDTO implements Serializable {
 	}
 	
 	public TicketDTO(Integer id, LocalDate openedDate, LocalDate closedDate, @NotNull Integer priority,
-			@NotNull Integer status, @NotNull String title, String observations, Integer technician,
+			@NotNull Integer status, @NotNull String title, @NotNull String description, Integer technician,
 			@NotNull Integer client, String technicianName, String clientName) {
 		super();
 		this.id = id;
@@ -56,7 +57,7 @@ public class TicketDTO implements Serializable {
 		this.priority = priority;
 		this.status = status;
 		this.title = title;
-		this.observations = observations;
+		this.description = description;
 		this.technician = technician;
 		this.client = client;
 		this.technicianName = technicianName;
@@ -71,7 +72,7 @@ public class TicketDTO implements Serializable {
 		this.priority = ticket.getPriority().getCode();
 		this.status = ticket.getStatus().getCode();
 		this.title = ticket.getTitle();
-		this.observations = ticket.getObservations();
+		this.description = ticket.getDescription();
 		this.technician = ticket.getTechnician().getId();
 		this.client = ticket.getClient().getId();
 		this.technicianName = ticket.getTechnician().getName();

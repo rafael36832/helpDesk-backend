@@ -72,7 +72,7 @@ public class TicketService {
 		ticket.setPriority(Priority.toEnum(dto.getPriority()));
 		ticket.setStatus(Status.toEnum(dto.getStatus()));
 		ticket.setTitle(dto.getTitle());
-		ticket.setObservations(dto.getObservations());
+		ticket.setDescription(dto.getDescription());
 
 		return ticket;
 	}
