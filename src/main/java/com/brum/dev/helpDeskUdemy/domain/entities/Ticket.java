@@ -43,7 +43,8 @@ public class Ticket implements Serializable {
 	@NotNull
 	private String title;
 	
-	private String observations;
+	@NotNull
+	private String description;
 	
 	@ManyToOne
 	@JoinColumn(name = "technician_id")
@@ -58,13 +59,13 @@ public class Ticket implements Serializable {
 	}	
 
 	public Ticket(Integer id, @NotNull Priority priority,
-			@NotNull Status status, @NotNull String title, String observations, Technician technician, Client client) {
+			@NotNull Status status, @NotNull String title, String description, Technician technician, Client client) {
 		super();
 		this.id = id;
 		this.priority = priority;
 		this.status = status;
 		this.title = title;
-		this.observations = observations;
+		this.description = description;
 		this.technician = technician;
 		this.client = client;
 	}
@@ -76,7 +77,7 @@ public class Ticket implements Serializable {
 		this.priority = Priority.toEnum(ticket.getPriority());
 		this.status = Status.toEnum(ticket.getStatus());
 		this.title = ticket.getTitle();
-		this.observations = ticket.getObservations();
+		this.description = ticket.getObservations();
 		this.technician.id = ticket.getTechnician();
 		this.client.id = ticket.getClient();
 	}
