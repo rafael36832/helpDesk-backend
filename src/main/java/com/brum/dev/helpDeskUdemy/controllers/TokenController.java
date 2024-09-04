@@ -50,7 +50,7 @@ public class TokenController {
 			
 			var expiresIn = 172800l;
 			var now = Instant.now();
-			var scopes = user.getProfile();
+			var scopes = user.getProfile().getDescription();
 
 			var claims = JwtClaimsSet.builder().issuer("helpDeskBackend").subject(user.getId().toString()).issuedAt(now)
 					.expiresAt(now.plusSeconds(expiresIn)).claim("scope", scopes).build();
